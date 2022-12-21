@@ -1,7 +1,7 @@
 import encoder 
 
 def main():
-    encoder.encode("thebestanimation","thebestanimation.mp4",.1,.1,10)
+    encoder.encode("anotheranimation","thebestanimation.mp4",1,300)
 
 if __name__== "__main__":
     main()

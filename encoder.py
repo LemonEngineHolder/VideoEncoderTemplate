@@ -16,7 +16,7 @@ def rescaleFrame(frame, scale):
     return cv.resize(frame, (width,height), interpolation = cv.INTER_AREA)
 
 
-def encode(filmName,videoName,resolutionMulti,fpsMulti,packetSize):
+def encode(filmName,videoName,fpsMulti,packetSize):
 
     videoLocation = getVideoLocation(videoName)
 
@@ -29,10 +29,10 @@ def encode(filmName,videoName,resolutionMulti,fpsMulti,packetSize):
     fpsMultiReciprocal = math.ceil(1/fpsMulti)
 
     realWidth  = videoCapture.get(cv.CAP_PROP_FRAME_WIDTH)
-    scaledWidth = math.floor(realWidth*resolutionMulti)
+    scaledWidth = 160
 
     realHeight = videoCapture.get(cv.CAP_PROP_FRAME_HEIGHT)
-    scaledHeight = math.floor(realHeight*resolutionMulti)
+    scaledHeight = 90
 
     realFPS = round(videoCapture.get(cv.CAP_PROP_FPS),3)
     scaledFPS = round(realFPS*fpsMulti,3)
@@ -82,7 +82,7 @@ def encode(filmName,videoName,resolutionMulti,fpsMulti,packetSize):
 
         if (totalFrameIterations) % fpsMultiReciprocal == 0:
 
-            frame = rescaleFrame(frame,resolutionMulti)
+            frame = rescaleFrame(frame, 90/realWidth)
 
             row,col,_ = frame.shape
 
